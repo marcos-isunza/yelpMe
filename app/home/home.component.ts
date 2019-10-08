@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { RouterExtensions } from "nativescript-angular/router";
+import { UserService } from "../shared/user.service";
+import { PokemonService } from "../shared/pokemon.service";
 
 @Component({
   selector: 'app-home',
@@ -6,10 +9,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  title = 'yelpDemo';
+  //title = 'Dashboard';
   private counter = 42;
+  processing = false;
+  pokemon = { id: null, name: null, image: null };
 
-  constructor() { }
+  constructor(private userService: UserService, private routerExtensions: RouterExtensions, private pokemonService: PokemonService) { }
 
   public getMessage() {
     return this.counter > 0 ?
@@ -19,5 +24,35 @@ export class HomeComponent {
 
   public onTap() {
     this.counter--;
+  }
+
+  logout() {
+    this.userService.logout();
+    this.routerExtensions.navigate(["/login"], { clearHistory: true });
+  }
+
+  submit() {
+    if (!this.pokemon.id) {
+      return;
+    }
+    this.processing = true;
+    this.search();
+    if (this.pokemon.name != null) {
+      this.processing = false;
+    }
+  }
+
+  search() {
+    this.pokemonService.getPokemonInfo(this.pokemon.id)
+      .subscribe(data => {
+        this.pokemon.name = data["name"];
+        this.pokemon.image = data["sprites"].front_default;
+      },
+        error => console.log(error))
+    this.processing = false;
+  }
+
+  goMenu(){
+    this.routerExtensions.navigate(["/category"], { clearHistory: false });
   }
 }

@@ -1,6 +1,23 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<StackLayout class="p-20">
-  <Label text="Tap the button" class="h1 text-center"></Label>
-  <Button text="TAP" (tap)="onTap()" class="btn btn-primary btn-active"></Button>
-  <Label [text]="getMessage()" class="h2 text-center" textWrap="true"></Label>
-</StackLayout>
+<ActionBar class="action-bar">
+  <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" (tap)="logout()"></NavigationButton>
+  <ActionItem tap="onShare" ios.systemIcon="9" ios.position="left" android.systemIcon="ic_menu_share"
+    android.position="actionBar"></ActionItem>
+  <ActionItem (tap)="logout()" ios.systemIcon="16" ios.position="right" text="Log Out" android.position="popup"></ActionItem>
+  <Label text="Dashboard" class="action-bar-label"></Label>
+</ActionBar>
+
+<ScrollView>
+  <StackLayout class="p-20">
+
+  <!-- <TextField class="input" hint="Pokemon ID" [isEnabled]="!processing" keyboardType="phone" maxLength="3"
+    [(ngModel)]="pokemon.id" returnKeyType="next">
+  </TextField>
+  <Image [src]="pokemon.image" width="150" class="m-b-30"></Image>
+  <Label class="text-center" [text]="pokemon.name" textWrap="true"></Label>
+  <ActivityIndicator rowSpan="3" [busy]="processing"></ActivityIndicator>
+  <Button text="Send" [isEnabled]="!processing" (tap)="submit()" class="btn btn-primary"></Button> -->
+  <Button text="Menu" [isEnabled]="!processing" (tap)="goMenu()" class="btn btn-primary"></Button>
+  </StackLayout>
+
+</ScrollView>

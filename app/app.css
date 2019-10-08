@@ -1,2 +1,32 @@
- 
+
 @import '~nativescript-theme-core/css/core.light.css';
+
+.action-bar {
+    background-color: #c40404;
+    color: White;
+}
+
+.action-bar-label {
+    font-family: 'Open Sans', 'OpenSans-Bold';
+    font-weight: bold;
+}
+
+.item-name {
+    color: #303c47;
+    font-family: 'Open Sans', 'OpenSans-Bold';
+    font-weight: bold;
+    padding: 2;
+}
+
+.item-desc {
+    color: #303c47;
+    font-family: 'Open Sans', 'OpenSans-Regular';
+    padding: 2;
+}
+
+.item-price {
+    color: #c40404;
+    font-family: 'Open Sans', 'OpenSans-Bold';
+    font-weight: bold;
+    padding: 2;
+}
